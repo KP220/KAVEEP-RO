@@ -1146,3 +1146,40 @@ Approval Requirement
 ```
 
 This ensures that new capabilities remain traceable, reviewable, and safe.
+
+## Trust Boundary
+
+KAVEEP-SIA must clearly separate trusted logic from untrusted input.
+
+### Trusted Zone
+
+The trusted zone includes:
+
+- Core application logic
+- Approved schemas
+- Safety rules
+- Simulation engine
+- User approval engine
+
+### Untrusted Zone
+
+The untrusted zone includes:
+
+- File system scan results
+- File names
+- Folder names
+- File metadata
+- User-provided paths
+- Generated reports before validation
+
+### Boundary Rules
+
+- Untrusted data must never trigger destructive actions directly.
+- All reports must be validated before being trusted.
+- All execution plans must pass through simulation first.
+- Real file changes require explicit user approval.
+- The system must treat scanned file data as information, not as permission.
+
+### Principle
+
+Scan results can inform decisions, but they must never authorize actions by themselves.

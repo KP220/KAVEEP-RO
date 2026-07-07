@@ -1,0 +1,121 @@
+{
+  "report_header": {
+    "report_id": "example-error-001",
+    "report_version": "0.1",
+    "engine_name": "Governance Intelligence & Common Reporting Engine",
+    "report_type": "governance_report",
+    "timestamp": "2026-07-07T04:00:00Z",
+    "correlation_id": "example-correlation-error-001"
+  },
+  "repository": {
+    "name": "KAVEEP-RO",
+    "full_name": "KP220/KAVEEP-RO",
+    "default_branch": "main",
+    "identity_version": "0.1",
+    "commit_sha": "mock-error-commit-sha",
+    "pull_request_number": 42
+  },
+  "assessment": {
+    "identity_status": "needs_review",
+    "evidence_status": "blocked",
+    "compliance_status": "non_compliant",
+    "continuity_status": "diverging",
+    "risk_status": "critical",
+    "consensus_status": "blocked",
+    "approval_status": "blocked",
+    "overall_status": "blocked"
+  },
+  "evidence": {
+    "sources": [
+      {
+        "source_type": "pull_request",
+        "source_ref": "PR #42",
+        "summary": "Proposed changes conflict with approved governance requirements.",
+        "independent": true,
+        "freshness": "example-static",
+        "confidence": 0.97
+      },
+      {
+        "source_type": "architecture_file",
+        "source_ref": "ARCHITECTURE.md",
+        "summary": "Architecture rules prohibit execution without explicit human approval.",
+        "independent": true,
+        "freshness": "example-static",
+        "confidence": 0.95
+      }
+    ],
+    "missing_evidence": [
+      "Human approval record"
+    ],
+    "conflicts": [
+      {
+        "summary": "Pull request proposes execution before approval.",
+        "severity": "critical",
+        "sources": [
+          "PR #42",
+          "ARCHITECTURE.md"
+        ]
+      }
+    ],
+    "convergence_level": 1,
+    "confidence_summary": "Evidence indicates a governance conflict requiring immediate review."
+  },
+  "findings": {
+    "key_findings": [
+      "Repository governance policy is violated.",
+      "Execution was proposed without satisfying approval requirements."
+    ],
+    "violations": [
+      {
+        "type": "approval",
+        "severity": "critical",
+        "summary": "Repository modification attempted without explicit human approval.",
+        "related_requirement": "Human approval before irreversible actions."
+      }
+    ],
+    "drift_indicators": [
+      "Governance workflow bypass attempt."
+    ],
+    "governance_concerns": [
+      "Approval policy has been violated."
+    ],
+    "safety_concerns": [
+      "Execution must remain blocked until governance requirements are satisfied."
+    ]
+  },
+  "recommendation": {
+    "action": "block",
+    "summary": "Block execution immediately.",
+    "rationale": "Critical governance violations and missing approval prevent safe execution.",
+    "next_steps": [
+      "Resolve governance violations.",
+      "Obtain explicit human approval.",
+      "Re-run governance assessment."
+    ]
+  },
+  "approval": {
+    "required_level": "block",
+    "human_approval_state": "missing",
+    "remaining_requirements": [
+      "Explicit human approval is required before any repository modification."
+    ]
+  },
+  "traceability": {
+    "related_specs": [
+      "SPEC-003",
+      "SPEC-009"
+    ],
+    "related_issues": [
+      "#10",
+      "#11"
+    ],
+    "related_pull_requests": [
+      "#42"
+    ],
+    "related_decisions": [],
+    "related_reports": [
+      "examples/common-report.warning.example.json",
+      "examples/common-report.success.example.json"
+    ]
+  }
+}

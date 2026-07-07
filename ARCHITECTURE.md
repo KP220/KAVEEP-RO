@@ -42,6 +42,8 @@ SPEC-003 Risk-Based Approval Engine
 Human Approval Required
         ↓
 Execution / Block / Report
+```
+
 ---
 
 # Engine Reference
@@ -49,7 +51,6 @@ Execution / Block / Report
 This section summarizes the responsibility, ownership, dependencies, inputs, outputs, and consumers of every engine in the KAVEEP-RO architecture.
 
 Detailed implementation requirements remain defined in their respective SPEC documents.
-
 ---
 
 # SPEC-000

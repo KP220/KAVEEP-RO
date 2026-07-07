@@ -1,0 +1,88 @@
+{
+  "report_header": {
+    "report_id": "example-warning-001",
+    "report_version": "0.1",
+    "engine_name": "Governance Intelligence & Common Reporting Engine",
+    "report_type": "governance_report",
+    "timestamp": "2026-07-07T03:50:00Z",
+    "correlation_id": "example-correlation-warning-001"
+  },
+  "repository": {
+    "name": "KAVEEP-RO",
+    "full_name": "KP220/KAVEEP-RO",
+    "default_branch": "main",
+    "identity_version": "0.1",
+    "commit_sha": "mock-warning-commit-sha",
+    "pull_request_number": null
+  },
+  "assessment": {
+    "identity_status": "healthy",
+    "evidence_status": "needs_review",
+    "compliance_status": "partially_compliant",
+    "continuity_status": "stable",
+    "risk_status": "medium",
+    "consensus_status": "monitor",
+    "approval_status": "missing",
+    "overall_status": "needs_review"
+  },
+  "evidence": {
+    "sources": [
+      {
+        "source_type": "spec",
+        "source_ref": "specs/SPEC-009.md",
+        "summary": "Common reporting requirements are defined, but example coverage is incomplete.",
+        "independent": true,
+        "freshness": "example-static",
+        "confidence": 0.82
+      }
+    ],
+    "missing_evidence": [
+      "Schema validation has not been run yet."
+    ],
+    "conflicts": [],
+    "convergence_level": 3,
+    "confidence_summary": "Evidence is useful but incomplete."
+  },
+  "findings": {
+    "key_findings": [
+      "The report structure is mostly aligned with the common schema.",
+      "Validation evidence is still missing."
+    ],
+    "violations": [],
+    "drift_indicators": [],
+    "governance_concerns": [
+      "Example reports should be validated before being treated as trusted references."
+    ],
+    "safety_concerns": []
+  },
+  "recommendation": {
+    "action": "monitor",
+    "summary": "Example report represents a warning governance state.",
+    "rationale": "The structure appears aligned, but validation is not yet confirmed.",
+    "next_steps": [
+      "Create validation script.",
+      "Validate all common report examples against the schema."
+    ]
+  },
+  "approval": {
+    "required_level": "recommend",
+    "human_approval_state": "missing",
+    "remaining_requirements": [
+      "Run schema validation before accepting this example as trusted."
+    ]
+  },
+  "traceability": {
+    "related_specs": [
+      "SPEC-009"
+    ],
+    "related_issues": [
+      "#10",
+      "#11"
+    ],
+    "related_pull_requests": [],
+    "related_decisions": [],
+    "related_reports": [
+      "examples/common-report.success.example.json"
+    ]
+  }
+}

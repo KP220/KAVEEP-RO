@@ -1149,37 +1149,46 @@ This ensures that new capabilities remain traceable, reviewable, and safe.
 
 ## Trust Boundary
 
-KAVEEP-SIA must clearly separate trusted logic from untrusted input.
+KAVEEP-RO must clearly separate trusted governance logic from untrusted repository input.
 
 ### Trusted Zone
 
 The trusted zone includes:
 
-- Core application logic
+- Approved SPEC files
+- Repository identity anchor
 - Approved schemas
 - Safety rules
-- Simulation engine
-- User approval engine
+- Risk-based approval policy
+- Orchestration logic
+- Human approval records
+- Governance reporting rules
 
 ### Untrusted Zone
 
 The untrusted zone includes:
 
-- File system scan results
-- File names
-- Folder names
-- File metadata
-- User-provided paths
+- Pull request content
+- Issue content
+- Commit messages
+- Branch names
+- File paths from repository scans
+- Contributor-provided text
+- CI logs
 - Generated reports before validation
+- External tool output
+- AI-generated recommendations before review
 
 ### Boundary Rules
 
-- Untrusted data must never trigger destructive actions directly.
-- All reports must be validated before being trusted.
-- All execution plans must pass through simulation first.
-- Real file changes require explicit user approval.
-- The system must treat scanned file data as information, not as permission.
+- Untrusted repository input must never trigger repository changes directly.
+- Pull requests, issues, commits, and CI output are evidence, not permission.
+- Generated reports must be validated before being trusted.
+- Approval status must come only from the Risk-Based Approval Engine and explicit human approval records.
+- No engine may push, merge, delete, overwrite, or modify repository content without explicit human approval.
+- The Orchestration Engine may coordinate analysis, but it must not approve or execute actions by itself.
+- The Reporting Engine may summarize findings, but it must not rewrite engine conclusions.
 
 ### Principle
 
-Scan results can inform decisions, but they must never authorize actions by themselves.
+Repository evidence can inform governance decisions, but it must never authorize execution by itself.

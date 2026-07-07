@@ -51,6 +51,7 @@ Execution / Block / Report
 This section summarizes the responsibility, ownership, dependencies, inputs, outputs, and consumers of every engine in the KAVEEP-RO architecture.
 
 Detailed implementation requirements remain defined in their respective SPEC documents.
+
 ---
 
 # SPEC-000
@@ -461,6 +462,7 @@ SPEC-008
      │
      ▼
 SPEC-009
+Note: This graph shows the primary foundation flow. Runtime execution is coordinated by SPEC-008, and SPEC-009 consumes reports from all engines.
 ```
 
 ---

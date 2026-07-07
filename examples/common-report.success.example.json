@@ -1,0 +1,86 @@
+{
+  "report_header": {
+    "report_id": "example-success-001",
+    "report_version": "0.1",
+    "engine_name": "Governance Intelligence & Common Reporting Engine",
+    "report_type": "governance_report",
+    "timestamp": "2026-07-07T03:45:00Z",
+    "correlation_id": "example-correlation-success-001"
+  },
+  "repository": {
+    "name": "KAVEEP-RO",
+    "full_name": "KP220/KAVEEP-RO",
+    "default_branch": "main",
+    "identity_version": "0.1",
+    "commit_sha": "mock-success-commit-sha",
+    "pull_request_number": null
+  },
+  "assessment": {
+    "identity_status": "healthy",
+    "evidence_status": "healthy",
+    "compliance_status": "compliant",
+    "continuity_status": "stable",
+    "risk_status": "low",
+    "consensus_status": "healthy",
+    "approval_status": "not_required",
+    "overall_status": "healthy"
+  },
+  "evidence": {
+    "sources": [
+      {
+        "source_type": "spec",
+        "source_ref": "specs/SPEC-009.md",
+        "summary": "Common reporting requirements are defined and aligned with the governance reporting engine.",
+        "independent": true,
+        "freshness": "example-static",
+        "confidence": 0.95
+      },
+      {
+        "source_type": "architecture_file",
+        "source_ref": "ARCHITECTURE.md",
+        "summary": "Architecture defines report flow, ownership, and trust boundary rules.",
+        "independent": true,
+        "freshness": "example-static",
+        "confidence": 0.93
+      }
+    ],
+    "missing_evidence": [],
+    "conflicts": [],
+    "convergence_level": 5,
+    "confidence_summary": "Multiple independent documentation sources align with the common reporting model."
+  },
+  "findings": {
+    "key_findings": [
+      "The repository governance reporting model is clearly defined.",
+      "The report structure follows the common schema requirements."
+    ],
+    "violations": [],
+    "drift_indicators": [],
+    "governance_concerns": [],
+    "safety_concerns": []
+  },
+  "recommendation": {
+    "action": "inform",
+    "summary": "Example report represents a healthy governance state.",
+    "rationale": "The mock evidence sources converge and no violations or safety concerns are present.",
+    "next_steps": [
+      "Use this file as a known-good schema validation target."
+    ]
+  },
+  "approval": {
+    "required_level": "none",
+    "human_approval_state": "not_required",
+    "remaining_requirements": []
+  },
+  "traceability": {
+    "related_specs": [
+      "SPEC-009"
+    ],
+    "related_issues": [
+      "#10"
+    ],
+    "related_pull_requests": [],
+    "related_decisions": [],
+    "related_reports": []
+  }
+}

@@ -68,3 +68,33 @@ Execution last.
 ## Status
 
 Early specification stage.
+
+## Developer Entry Points
+
+This project is designed to be developed through clear and safe entry points.
+
+### Main Entry Points
+
+- `specs/`  
+  Contains project specifications and system requirements.
+
+- `schemas/`  
+  Contains shared JSON schemas used by reports and modules.
+
+- `examples/`  
+  Contains example outputs used for validation and testing.
+
+- `docs/`  
+  Contains architecture notes, safety rules, and design explanations.
+
+### Development Flow
+
+1. Read the relevant SPEC file.
+2. Check the architecture and trust boundary.
+3. Implement only the approved module or file.
+4. Validate output against the related schema.
+5. Open a pull request for review.
+
+### Safety Rule
+
+No module may delete, move, rename, overwrite, or modify real user files unless explicitly approved by the user.

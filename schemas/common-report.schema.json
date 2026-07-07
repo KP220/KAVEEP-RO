@@ -1,0 +1,518 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://kaveep.local/schemas/common-report.schema.json",
+  "title": "KAVEEP Common Governance Report",
+  "description": "Common report schema used by KAVEEP-RO governance engines.",
+  "type": "object",
+  "required": [
+    "report_header",
+    "repository",
+    "assessment",
+    "evidence",
+    "findings",
+    "recommendation",
+    "approval",
+    "traceability"
+  ],
+  "additionalProperties": false,
+  "properties": {
+    "report_header": {
+      "type": "object",
+      "required": [
+        "report_id",
+        "report_version",
+        "engine_name",
+        "report_type",
+        "timestamp",
+        "correlation_id"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "report_id": {
+          "type": "string"
+        },
+        "report_version": {
+          "type": "string",
+          "default": "0.1"
+        },
+        "engine_name": {
+          "type": "string"
+        },
+        "report_type": {
+          "type": "string",
+          "enum": [
+            "identity_report",
+            "evidence_report",
+            "compliance_report",
+            "approval_report",
+            "pull_request_intelligence_report",
+            "swarm_consensus_report",
+            "continuity_report",
+            "decision_package",
+            "governance_report"
+          ]
+        },
+        "timestamp": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "correlation_id": {
+          "type": "string"
+        }
+      }
+    },
+    "repository": {
+      "type": "object",
+      "required": [
+        "name",
+        "full_name",
+        "default_branch",
+        "identity_version"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "name": {
+          "type": "string"
+        },
+        "full_name": {
+          "type": "string"
+        },
+        "default_branch": {
+          "type": "string"
+        },
+        "identity_version": {
+          "type": "string"
+        },
+        "commit_sha": {
+          "type": "string"
+        },
+        "pull_request_number": {
+          "type": [
+            "integer",
+            "null"
+          ]
+        }
+      }
+    },
+    "assessment": {
+      "type": "object",
+      "required": [
+        "identity_status",
+        "evidence_status",
+        "compliance_status",
+        "continuity_status",
+        "risk_status",
+        "consensus_status",
+        "approval_status",
+        "overall_status"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "identity_status": {
+          "$ref": "#/$defs/status"
+        },
+        "evidence_status": {
+          "$ref": "#/$defs/status"
+        },
+        "compliance_status": {
+          "$ref": "#/$defs/compliance_status"
+        },
+        "continuity_status": {
+          "$ref": "#/$defs/continuity_status"
+        },
+        "risk_status": {
+          "$ref": "#/$defs/risk_status"
+        },
+        "consensus_status": {
+          "$ref": "#/$defs/status"
+        },
+        "approval_status": {
+          "$ref": "#/$defs/approval_status"
+        },
+        "overall_status": {
+          "$ref": "#/$defs/output_status"
+        }
+      }
+    },
+    "evidence": {
+      "type": "object",
+      "required": [
+        "sources",
+        "missing_evidence",
+        "conflicts",
+        "convergence_level"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "sources": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/evidence_source"
+          }
+        },
+        "missing_evidence": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "conflicts": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/conflict"
+          }
+        },
+        "convergence_level": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 5
+        },
+        "confidence_summary": {
+          "type": "string"
+        }
+      }
+    },
+    "findings": {
+      "type": "object",
+      "required": [
+        "key_findings",
+        "violations",
+        "drift_indicators",
+        "governance_concerns",
+        "safety_concerns"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "key_findings": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "violations": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/violation"
+          }
+        },
+        "drift_indicators": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "governance_concerns": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "safety_concerns": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "recommendation": {
+      "type": "object",
+      "required": [
+        "action",
+        "summary",
+        "rationale"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "action": {
+          "type": "string",
+          "enum": [
+            "inform",
+            "monitor",
+            "recommend",
+            "prepare",
+            "await_approval",
+            "escalate",
+            "reject",
+            "block",
+            "unknown"
+          ]
+        },
+        "summary": {
+          "type": "string"
+        },
+        "rationale": {
+          "type": "string"
+        },
+        "next_steps": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "approval": {
+      "type": "object",
+      "required": [
+        "required_level",
+        "human_approval_state",
+        "remaining_requirements"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "required_level": {
+          "type": "string",
+          "enum": [
+            "none",
+            "inform_only",
+            "recommend",
+            "prepare",
+            "execute_with_approval",
+            "block"
+          ]
+        },
+        "human_approval_state": {
+          "type": "string",
+          "enum": [
+            "not_required",
+            "missing",
+            "ambiguous",
+            "granted",
+            "rejected"
+          ]
+        },
+        "remaining_requirements": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "traceability": {
+      "type": "object",
+      "required": [
+        "related_specs",
+        "related_issues",
+        "related_pull_requests",
+        "related_decisions",
+        "related_reports"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "related_specs": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "related_issues": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "related_pull_requests": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "related_decisions": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "related_reports": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      }
+    }
+  },
+  "$defs": {
+    "status": {
+      "type": "string",
+      "enum": [
+        "healthy",
+        "monitor",
+        "needs_review",
+        "needs_approval",
+        "escalated",
+        "blocked",
+        "unknown"
+      ]
+    },
+    "output_status": {
+      "type": "string",
+      "enum": [
+        "healthy",
+        "monitor",
+        "needs_review",
+        "needs_approval",
+        "escalated",
+        "blocked",
+        "unknown"
+      ]
+    },
+    "compliance_status": {
+      "type": "string",
+      "enum": [
+        "compliant",
+        "partially_compliant",
+        "non_compliant",
+        "unknown"
+      ]
+    },
+    "continuity_status": {
+      "type": "string",
+      "enum": [
+        "stable",
+        "growing",
+        "diverging",
+        "broken",
+        "unknown"
+      ]
+    },
+    "risk_status": {
+      "type": "string",
+      "enum": [
+        "low",
+        "medium",
+        "high",
+        "critical",
+        "unknown"
+      ]
+    },
+    "approval_status": {
+      "type": "string",
+      "enum": [
+        "not_required",
+        "missing",
+        "ambiguous",
+        "granted",
+        "rejected",
+        "blocked"
+      ]
+    },
+    "evidence_source": {
+      "type": "object",
+      "required": [
+        "source_type",
+        "source_ref",
+        "summary",
+        "independent"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "source_type": {
+          "type": "string",
+          "enum": [
+            "spec",
+            "readme",
+            "source_code",
+            "test",
+            "ci",
+            "issue",
+            "pull_request",
+            "review_comment",
+            "commit",
+            "release_note",
+            "security_report",
+            "dependency_file",
+            "roadmap",
+            "approval_record",
+            "identity_file",
+            "architecture_file",
+            "other"
+          ]
+        },
+        "source_ref": {
+          "type": "string"
+        },
+        "summary": {
+          "type": "string"
+        },
+        "independent": {
+          "type": "boolean"
+        },
+        "freshness": {
+          "type": "string"
+        },
+        "confidence": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 1
+        }
+      }
+    },
+    "conflict": {
+      "type": "object",
+      "required": [
+        "summary",
+        "severity",
+        "sources"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "summary": {
+          "type": "string"
+        },
+        "severity": {
+          "$ref": "#/$defs/severity"
+        },
+        "sources": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "violation": {
+      "type": "object",
+      "required": [
+        "type",
+        "severity",
+        "summary"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "type": {
+          "type": "string",
+          "enum": [
+            "documentation",
+            "implementation",
+            "behavior",
+            "approval",
+            "safety",
+            "continuity",
+            "unknown"
+          ]
+        },
+        "severity": {
+          "$ref": "#/$defs/severity"
+        },
+        "summary": {
+          "type": "string"
+        },
+        "related_requirement": {
+          "type": "string"
+        }
+      }
+    },
+    "severity": {
+      "type": "string",
+      "enum": [
+        "low",
+        "medium",
+        "high",
+        "critical"
+      ]
+    }
+  }
+}
